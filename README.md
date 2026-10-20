@@ -1,9 +1,4 @@
-<a href="https://github.com/Harris-py">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="dark_mode.svg">
-    <img alt="Harris-py: an ASCII portrait beside a terminal-style card. Builds AI developer tools and runs local LLMs. Languages: TypeScript, Python, C++. Creator of Switchboard and hot-experts." src="light_mode.svg">
-  </picture>
-</a>
+<p align="center"><img src="profile-crt.gif" width="800" alt="A green-phosphor CRT monitor: a pixel portrait of a green character in white sunglasses, beside a terminal listing Name: Harris, Work: AI developer tools, OS: macOS, Editor: Claude Code, Languages: TypeScript, Python, C++, JavaScript, Skills: AI agents, local LLMs, MCP, ESP32, and a harris@mbp$ prompt."></p>
 
 ### A little more about me…
 

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: 'VT323'; src: url(VT323.woff2) format('woff2'); }
+html, body { margin: 0; background: #000; }
+canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="800" height="541"></canvas>
+<script>
+// A green-phosphor CRT: a dithered pixel portrait draws in, the info types out, the colour test row lights up.
+// Every frame is a pure function of t, so render.mjs can step through it.
+const P = __PORTRAIT__;
+const INFO = [
+  ['Name', 'Harris'],
+  ['Work', 'AI developer tools'],
+  ['OS', 'macOS'],
+  ['Editor', 'Claude Code'],
+  ['Languages', 'TypeScript, Python,', 'C++, JavaScript'],
+  ['Skills', 'AI agents, local LLMs,', 'MCP, ESP32'],
+];
+const PROMPT = 'harris@mbp$ ';
+const W = 800, H = 541;
+const cv = document.getElementById('c'), cx = cv.getContext('2d');
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map(v => (v + .5) / 16);
+const PAL = ['#2F6B34', '#5DAE5E', '#9BD88F', '#E8F6DC'];    // dark, mid (background), light, white
+const PANEL = { x: 28, y: 18, w: 428, h: 480, px: 4, band: 16 };
+const TX = 490, TY = 34, LH = 22;
+const SW = [['#3E5F3A', '#D08A3E', '#4FCF6A', '#E3D45A', '#3FD1A0', '#C98A8A', '#43D68B', '#A9E7A2'],
+            ['#8FD48A', '#B9E6A9', '#C8EBB0', '#E2F0A8', '#BFE9C8', '#D7EDCB', '#C9EFC9', '#E4F7DD']];
+let noiseSeed = 1;
+const rnd = () => (noiseSeed = noiseSeed * 16807 % 2147483647) / 2147483647;
+
+// Text lines with their typing start times.
+const LINES = [];
+{ let t = 2.5;
+  for (const [k, ...vals] of INFO) {
+    vals.forEach((v, i) => { const s = i === 0 ? `${k}: ${v}` : ' '.repeat(k.length + 2) + v; LINES.push({ s, key: i === 0 ? k.length + 1 : 0, t }); t += s.length / 38 + .08; });
+  }
+  LINES.end = t;
+}
+
+function portrait(t) {
+  const { x, y, w, h, px, band } = PANEL;
+  const bands = Math.ceil(h / band);
+  for (let b = 0; b < bands; b++) {
+    const start = .25 + b * (2.1 / bands);
+    const k = clamp((t - start) / .22);                     // this band sweeps left to right
+    if (k <= 0) continue;
+    const cols = Math.ceil(P.w * k);
+    for (let r = Math.floor(b * band / px); r < Math.min(P.h, (b + 1) * band / px); r++) {
+      for (let c = 0; c < cols; c++) {
+        const v = P.px[r * P.w + c];
+        const level = v < 0 ? 1 : v * 3;                     // background: flat mid green; subject: dark, light and white
+        const base = Math.floor(level), frac = level - base;
+        const idx = Math.min(3, base + (frac > BAYER[(r % 4) * 4 + (c % 4)] ? 1 : 0));
+        cx.fillStyle = PAL[idx];
+        cx.fillRect(x + c * px, y + r * px, px, px);
+      }
+    }
+    // the dark rule between bands, as on the original
+    cx.fillStyle = 'rgba(20,50,22,.55)';
+    cx.fillRect(x, y + (b + 1) * band - 2, w * k, 2);
+  }
+  cx.strokeStyle = 'rgba(160,230,150,.25)'; cx.lineWidth = 1; cx.strokeRect(x - .5, y - .5, w + 1, h + 1);
+}
+
+function text(t) {
+  cx.font = '24px VT323'; cx.textBaseline = 'alphabetic';
+  cx.shadowColor = 'rgba(140,255,140,.75)'; cx.shadowBlur = 8;
+  let cursor = null;
+  LINES.forEach((L, i) => {
+    const n = Math.floor(clamp((t - L.t) * 38, 0, L.s.length));
+    if (n <= 0) return;
+    const shown = L.s.slice(0, n), yy = TY + i * LH;
+    cx.fillStyle = '#B6F7A4';
+    cx.fillText(shown, TX, yy);
+    if (n < L.s.length) cursor = [TX + cx.measureText(shown).width + 2, yy];
+  });
+  if (cursor) { cx.fillStyle = '#C9F7BE'; cx.fillRect(cursor[0], cursor[1] - 16, 9, 18); }
+  cx.shadowBlur = 0;
+}
+
+function swatches(t) {
+  const k = clamp((t - (LINES.end + .3)) / .6);
+  if (k <= 0) return;
+  const s = 28, x0 = TX + 2, y0 = TY + LINES.length * LH + 22;
+  SW.forEach((row, r) => row.forEach((col, c) => {
+    const on = clamp(k * 16 - (r * 8 + c) * .7);
+    if (on <= 0) return;
+    cx.globalAlpha = on; cx.fillStyle = col;
+    cx.fillRect(x0 + c * s + (r === 0 ? s : 0), y0 + r * (s - 6), s, s - 6);
+  }));
+  cx.globalAlpha = 1;
+}
+
+function prompt(t) {
+  cx.font = '24px VT323'; cx.shadowColor = 'rgba(140,255,140,.75)'; cx.shadowBlur = 8; cx.fillStyle = '#B6F7A4';
+  cx.fillText(PROMPT, 28, 522);
+  const busy = t < LINES.end + 1;                          // the prompt cursor rests while the card is drawing
+  if (busy || Math.floor(t * 2) % 2 === 0) { cx.fillRect(28 + cx.measureText(PROMPT).width, 506, 9, 19); }
+  cx.shadowBlur = 0;
+}
+
+function crt(t) {
+  // scanlines
+  cx.fillStyle = 'rgba(0,0,0,.18)';
+  for (let y = 0; y < H; y += 3) cx.fillRect(0, y, W, 1);
+  // a soft bright band rolling down the screen
+  const by = ((t * 90) % (H + 160)) - 80;
+  const g = cx.createLinearGradient(0, by - 60, 0, by + 60);
+  g.addColorStop(0, 'rgba(180,255,170,0)'); g.addColorStop(.5, 'rgba(180,255,170,.05)'); g.addColorStop(1, 'rgba(180,255,170,0)');
+  cx.fillStyle = g; cx.fillRect(0, by - 60, W, 120);
+  // noise
+  noiseSeed = 1 + Math.floor(t * 6) * 97;   // grain changes a few times a second (keeps the GIF small)
+  cx.fillStyle = 'rgba(200,255,200,.035)';
+  for (let i = 0; i < 900; i++) cx.fillRect(rnd() * W, rnd() * H, 1.5, 1.5);
+  // flicker
+  const fl = .025 + .02 * Math.sin(t * 47) * Math.sin(t * 13);
+  cx.fillStyle = `rgba(0,0,0,${fl})`; cx.fillRect(0, 0, W, H);
+  // vignette and the curved glass edge
+  const v = cx.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, W * .62);
+  v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.65)');
+  cx.fillStyle = v; cx.fillRect(0, 0, W, H);
+}
+
+window.__duration = 11;
+window.__seek = (t) => {
+  cx.clearRect(0, 0, W, H);
+  // bezel and screen
+  cx.fillStyle = '#121410'; cx.fillRect(0, 0, W, H);
+  cx.save();
+  const r = 26; cx.beginPath(); cx.roundRect(10, 6, W - 20, H - 12, r); cx.clip();
+  const bg = cx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, W * .6);
+  bg.addColorStop(0, '#16351A'); bg.addColorStop(1, '#0A1A0C');
+  cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+  // power-on: the picture blooms in from a bright line
+  const on = clamp(t / .35);
+  cx.globalAlpha = on;
+  portrait(t); text(t); swatches(t); prompt(t);
+  cx.globalAlpha = 1;
+  crt(t);
+  if (t < .35) { cx.fillStyle = `rgba(200,255,200,${1 - on})`; const hh = 2 + on * H; cx.fillRect(10, H / 2 - hh / 2, W - 20, hh); }
+  cx.restore();
+  // glass reflection
+  const gl = cx.createLinearGradient(0, 0, W, H);
+  gl.addColorStop(0, 'rgba(255,255,255,.05)'); gl.addColorStop(.35, 'rgba(255,255,255,0)');
+  cx.fillStyle = gl; cx.beginPath(); cx.roundRect(10, 6, W - 20, H - 12, 26); cx.fill();
+};
+document.fonts.load('22px VT323').then(() => window.__seek(Number(new URLSearchParams(location.search).get('t') || 10)));
+</script>
+</body>
+</html>
