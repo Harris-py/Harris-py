@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [gen.py, art.txt, art_light.txt, stats.py]
+    paths: ["card/**"]
 
 permissions:
   contents: write
