@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="910" height="579" viewBox="0 0 910 579" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="14px">
+<style>
+.a{fill:#24292F;white-space:pre;opacity:0;animation:in .5s ease-out forwards}
+@keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.text{fill:#24292F} .key{fill:#953800} .value{fill:#0A3069} .dots{fill:#C2CFDE}
+.l{white-space:pre}
+.cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.a{animation:none;opacity:1}}
+</style>
+<rect width="910" height="579" rx="15" fill="#F6F8FA" stroke="#D0D7DE"/>
+<text class="a" x="22" y="34" style="animation-delay:0.000s" xml:space="preserve">                    ..---.</text>
+<text class="a" x="22" y="51" style="animation-delay:0.045s" xml:space="preserve">                  :=+***#**=-</text>
+<text class="a" x="22" y="68" style="animation-delay:0.090s" xml:space="preserve">                .=*##*###%%##*.</text>
+<text class="a" x="22" y="85" style="animation-delay:0.135s" xml:space="preserve">               -*%%%%%##%*+++##.</text>
+<text class="a" x="22" y="102" style="animation-delay:0.180s" xml:space="preserve">               :###%*+++:---:=*.</text>
+<text class="a" x="22" y="119" style="animation-delay:0.225s" xml:space="preserve">               -===:-=+==--:==-.</text>
+<text class="a" x="22" y="136" style="animation-delay:0.270s" xml:space="preserve">              .-:::---------:---</text>
+<text class="a" x="22" y="153" style="animation-delay:0.315s" xml:space="preserve">               --::------:::----</text>
+<text class="a" x="22" y="170" style="animation-delay:0.360s" xml:space="preserve">               .--::::::::=:::-.</text>
+<text class="a" x="22" y="187" style="animation-delay:0.405s" xml:space="preserve">                .-:=::::::::::.</text>
+<text class="a" x="22" y="204" style="animation-delay:0.450s" xml:space="preserve">                --:=#%##*=++=-</text>
+<text class="a" x="22" y="221" style="animation-delay:0.495s" xml:space="preserve">            .-:==:--:=++**+*:--...</text>
+<text class="a" x="22" y="238" style="animation-delay:0.540s" xml:space="preserve">         .-:=*#*++=--------%#=--.---.</text>
+<text class="a" x="22" y="255" style="animation-delay:0.585s" xml:space="preserve">    ..-:::::=+*%#++=:-----:%+:=+::---</text>
+<text class="a" x="22" y="272" style="animation-delay:0.630s" xml:space="preserve">   --:::=====++*#%%@@%%+-:*%%#*##+=::.</text>
+<text class="a" x="22" y="289" style="animation-delay:0.675s" xml:space="preserve">   :=====++*+*++=+****#%*#@%*=+=*%#=:-</text>
+<text class="a" x="22" y="306" style="animation-delay:0.720s" xml:space="preserve">  .:=++*+=*##*+=======++*****====*##=:.</text>
+<text class="a" x="22" y="323" style="animation-delay:0.765s" xml:space="preserve">  -==+**#**#*+======:=++#++#*===:=%%*+-</text>
+<text class="a" x="22" y="340" style="animation-delay:0.810s" xml:space="preserve">  :==+***#%%#+++=======+#***#*=+==#%#*-</text>
+<text class="a" x="22" y="357" style="animation-delay:0.855s" xml:space="preserve"> .:=+++*##%@%**++======+#***#**+=:+#%#-</text>
+<text class="a" x="22" y="374" style="animation-delay:0.900s" xml:space="preserve"> -===++**#%@##+*++++++++#***##**+=+#@#:</text>
+<text class="a" x="22" y="391" style="animation-delay:0.945s" xml:space="preserve"> :===++**#%%###********+#****%##*++@@%=</text>
+<text class="a" x="22" y="408" style="animation-delay:0.990s" xml:space="preserve"> :=+++**#%@%%#*******#+**+***#%%#*%@@%*</text>
+<text class="a" x="22" y="425" style="animation-delay:1.035s" xml:space="preserve"> =+++++*##@@##+*##*##*+**++*++#%%#@@@%*.</text>
+<text class="a" x="22" y="442" style="animation-delay:1.080s" xml:space="preserve"> =+++++**#@@%####*##*****++++++*@#++=::</text>
+<text class="a" x="22" y="459" style="animation-delay:1.125s" xml:space="preserve"> ::==+**#%@%%%%#*##***+++++*++=+#%:----</text>
+<text class="a" x="22" y="476" style="animation-delay:1.170s" xml:space="preserve"> .-...---%@%%%#*##****++++++++==+%+---.</text>
+<text class="a" x="22" y="493" style="animation-delay:1.215s" xml:space="preserve"> ....---*@@%%###******+++++++++==**---.</text>
+<text class="a" x="22" y="510" style="animation-delay:1.260s" xml:space="preserve"> ---.---%@%%###*************++====*:--.</text>
+<text class="a" x="22" y="527" style="animation-delay:1.305s" xml:space="preserve"> -------*@%%%###*#**##********+===*::-.</text>
+<text class="a" x="22" y="544" style="animation-delay:1.350s" xml:space="preserve"> --------%@%%%########*####****=+==:-:.</text>
+<defs>
+<clipPath id="c0"><rect x="380" y="18" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="0.60s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c1"><rect x="380" y="38" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="0.89s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c2"><rect x="380" y="58" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="1.18s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c3"><rect x="380" y="78" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="1.47s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c4"><rect x="380" y="98" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="1.76s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c5"><rect x="380" y="118" height="22" width="0"><animate attributeName="width" from="0" to="12.4" begin="2.05s" dur="0.08s" fill="freeze"/></rect></clipPath>
+<clipPath id="c6"><rect x="380" y="138" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="2.17s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c7"><rect x="380" y="158" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="2.46s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c8"><rect x="380" y="178" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="2.75s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c9"><rect x="380" y="198" height="22" width="0"><animate attributeName="width" from="0" to="12.4" begin="3.04s" dur="0.08s" fill="freeze"/></rect></clipPath>
+<clipPath id="c10"><rect x="380" y="218" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="3.16s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c11"><rect x="380" y="238" height="22" width="0"><animate attributeName="width" from="0" to="12.4" begin="3.45s" dur="0.08s" fill="freeze"/></rect></clipPath>
+<clipPath id="c12"><rect x="380" y="258" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="3.57s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c13"><rect x="380" y="278" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="3.86s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c14"><rect x="380" y="298" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="4.15s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c15"><rect x="380" y="318" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="4.44s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c16"><rect x="380" y="338" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="4.73s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c17"><rect x="380" y="358" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="5.02s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c18"><rect x="380" y="378" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="5.31s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c19"><rect x="380" y="398" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="5.60s" dur="0.25s" fill="freeze"/></rect></clipPath>
+<clipPath id="c20"><rect x="380" y="418" height="22" width="0"><animate attributeName="width" from="0" to="509.8" begin="5.89s" dur="0.25s" fill="freeze"/></rect></clipPath>
+</defs>
+<text class="l" x="380" y="34" clip-path="url(#c0)" xml:space="preserve"><tspan class="text">Harris-py </tspan><tspan class="dots">——————————————————————————————————————————————————</tspan></text>
+<text class="l" x="380" y="54" clip-path="url(#c1)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">OS</tspan><tspan class="text">: </tspan><tspan class="dots">......................................... </tspan><tspan class="value">macOS, Linux</tspan></text>
+<text class="l" x="380" y="74" clip-path="url(#c2)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Host</tspan><tspan class="text">: </tspan><tspan class="dots">.......................................... </tspan><tspan class="value">127.0.0.1</tspan></text>
+<text class="l" x="380" y="94" clip-path="url(#c3)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Kernel</tspan><tspan class="text">: </tspan><tspan class="dots">................... </tspan><tspan class="value">AI developer tools, local LLMs</tspan></text>
+<text class="l" x="380" y="114" clip-path="url(#c4)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">IDE</tspan><tspan class="text">: </tspan><tspan class="dots">......................... </tspan><tspan class="value">Claude Code, Codex, VS Code</tspan></text>
+<text class="l" x="380" y="134" clip-path="url(#c5)" xml:space="preserve"><tspan class="dots">.</tspan></text>
+<text class="l" x="380" y="154" clip-path="url(#c6)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Languages.Programming</tspan><tspan class="text">: </tspan><tspan class="dots">........... </tspan><tspan class="value">TypeScript, Python, C++</tspan></text>
+<text class="l" x="380" y="174" clip-path="url(#c7)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Languages.Systems</tspan><tspan class="text">: </tspan><tspan class="dots">............... </tspan><tspan class="value">Vulkan, llama.cpp, Node</tspan></text>
+<text class="l" x="380" y="194" clip-path="url(#c8)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Languages.Protocols</tspan><tspan class="text">: </tspan><tspan class="dots">.................. </tspan><tspan class="value">MCP, JSON-RPC, Git</tspan></text>
+<text class="l" x="380" y="214" clip-path="url(#c9)" xml:space="preserve"><tspan class="dots">.</tspan></text>
+<text class="l" x="380" y="234" clip-path="url(#c10)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Creator.Of</tspan><tspan class="text">: </tspan><tspan class="dots">..................... </tspan><tspan class="value">Switchboard, hot-experts</tspan></text>
+<text class="l" x="380" y="254" clip-path="url(#c11)" xml:space="preserve"><tspan class="dots">.</tspan></text>
+<text class="l" x="380" y="274" clip-path="url(#c12)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Software</tspan><tspan class="text">: </tspan><tspan class="dots">............... </tspan><tspan class="value">AI agents, LLM inference</tspan></text>
+<text class="l" x="380" y="294" clip-path="url(#c13)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Hardware</tspan><tspan class="text">: </tspan><tspan class="dots">......................... </tspan><tspan class="value">ESP32, Arduino</tspan></text>
+<text class="l" x="380" y="314" clip-path="url(#c14)" xml:space="preserve"><tspan class="text">— Contact </tspan><tspan class="dots">——————————————————————————————————————————————————</tspan></text>
+<text class="l" x="380" y="334" clip-path="url(#c15)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">GitHub</tspan><tspan class="text">: </tspan><tspan class="dots">............................. </tspan><tspan class="value">github.com/Harris-py</tspan></text>
+<text class="l" x="380" y="354" clip-path="url(#c16)" xml:space="preserve"><tspan class="text">— GitHub Stats </tspan><tspan class="dots">—————————————————————————————————————————————</tspan></text>
+<text class="l" x="380" y="374" clip-path="url(#c17)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Repos</tspan><tspan class="text">: </tspan><tspan class="dots">.......................................... </tspan><tspan class="value">8 public</tspan></text>
+<text class="l" x="380" y="394" clip-path="url(#c18)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Contributions</tspan><tspan class="text">: </tspan><tspan class="dots">........................ </tspan><tspan class="value">… in the last year</tspan></text>
+<text class="l" x="380" y="414" clip-path="url(#c19)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Commits</tspan><tspan class="text">: </tspan><tspan class="dots">.............................. </tspan><tspan class="value">… in the last year</tspan></text>
+<text class="l" x="380" y="434" clip-path="url(#c20)" xml:space="preserve"><tspan class="dots">. </tspan><tspan class="key">Pull.Requests</tspan><tspan class="text">: </tspan><tspan class="dots">........................ </tspan><tspan class="value">… in the last year</tspan></text>
+<rect class="cur" width="8.4" height="16" fill="#1A7F37" x="380" y="21">
+<set attributeName="y" to="21" begin="0.60s"/><animate attributeName="x" from="380" to="885.8" begin="0.60s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="41" begin="0.89s"/><animate attributeName="x" from="380" to="885.8" begin="0.89s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="61" begin="1.18s"/><animate attributeName="x" from="380" to="885.8" begin="1.18s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="81" begin="1.47s"/><animate attributeName="x" from="380" to="885.8" begin="1.47s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="101" begin="1.76s"/><animate attributeName="x" from="380" to="885.8" begin="1.76s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="121" begin="2.05s"/><animate attributeName="x" from="380" to="388.4" begin="2.05s" dur="0.08s" fill="freeze"/>
+<set attributeName="y" to="141" begin="2.17s"/><animate attributeName="x" from="380" to="885.8" begin="2.17s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="161" begin="2.46s"/><animate attributeName="x" from="380" to="885.8" begin="2.46s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="181" begin="2.75s"/><animate attributeName="x" from="380" to="885.8" begin="2.75s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="201" begin="3.04s"/><animate attributeName="x" from="380" to="388.4" begin="3.04s" dur="0.08s" fill="freeze"/>
+<set attributeName="y" to="221" begin="3.16s"/><animate attributeName="x" from="380" to="885.8" begin="3.16s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="241" begin="3.45s"/><animate attributeName="x" from="380" to="388.4" begin="3.45s" dur="0.08s" fill="freeze"/>
+<set attributeName="y" to="261" begin="3.57s"/><animate attributeName="x" from="380" to="885.8" begin="3.57s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="281" begin="3.86s"/><animate attributeName="x" from="380" to="885.8" begin="3.86s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="301" begin="4.15s"/><animate attributeName="x" from="380" to="885.8" begin="4.15s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="321" begin="4.44s"/><animate attributeName="x" from="380" to="885.8" begin="4.44s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="341" begin="4.73s"/><animate attributeName="x" from="380" to="885.8" begin="4.73s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="361" begin="5.02s"/><animate attributeName="x" from="380" to="885.8" begin="5.02s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="381" begin="5.31s"/><animate attributeName="x" from="380" to="885.8" begin="5.31s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="401" begin="5.60s"/><animate attributeName="x" from="380" to="885.8" begin="5.60s" dur="0.25s" fill="freeze"/>
+<set attributeName="y" to="421" begin="5.89s"/><animate attributeName="x" from="380" to="885.8" begin="5.89s" dur="0.25s" fill="freeze"/>
+</rect>
+</svg>
