@@ -3,3 +3,12 @@ crt/portrait.json
 crt/avatar.png
 crt/stills/
 crt/*.mkv
+card/film/film.html
+card/film/card.json
+card/film/ev.json
+card/film/events.json
+card/film/dur.txt
+card/film/sound.wav
+card/film/*.mkv
+card/film/stills/
+node_modules/

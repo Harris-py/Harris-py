@@ -1,9 +1,4 @@
-<a href="https://github.com/Harris-py">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="card/dark_mode.svg">
-    <img alt="Harris-py: ASCII art of a green character in white sunglasses beside a terminal-style card. AI developer tools and local LLMs; TypeScript, Python, C++; creator of Switchboard, hot-experts and gpio-planner-mcp." src="card/light_mode.svg">
-  </picture>
-</a>
+<a href="https://github.com/Harris-py"><img src="card/card.gif" width="100%" alt="A terminal runs neofetch: ASCII art of a green character in white sunglasses decodes beside Harris-py's card. OS: Windows, Arch Linux, macOS. Host: 127.0.LHR.1. IDE: Android Studio, VS Code, Neovim, Claude Code, Figma. Languages: C/C++, Py, Java, TypeScript, Shell, Bash; PyTorch, TensorFlow, TFLite/LiteRT; UML, LaTeX, JSON, YAML, Bash. Creator of Switchboard, hot-experts, GPIO Planner, Lab Report Studio. Hobbies: AI agents, LLM inference, terminals, ESP32, Arduino, soldering. Email: m.haris2124@gmail.com."></a>
 
 ### A little more about me…
 

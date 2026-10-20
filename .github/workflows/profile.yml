@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["card/**"]
+    paths: ["card/**", "!card/card.gif", "!card/*.svg", "!card/stats.json"]
 
 permissions:
   contents: write
@@ -19,12 +19,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python card/stats.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Refresh stats and the SVG card
+        run: python card/stats.py && python card/gen.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: python card/gen.py
+      - name: Re-render the animated card
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          npm install --no-save --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+          cd card/film
+          python export.py && python build.py
+          node render.mjs video film.mkv 20
+          ffmpeg -loglevel error -y -i film.mkv -vf "fps=15,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle" -loop 0 ../card.gif
+        env:
+          PLAYWRIGHT_MODULE: ${{ github.workspace }}/node_modules/playwright
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add card/stats.json card/dark_mode.svg card/light_mode.svg
-          git diff --cached --quiet || (git commit -m "Update profile card stats" && git push)
+          git add card/stats.json card/dark_mode.svg card/light_mode.svg card/card.gif
+          git diff --cached --quiet || (git commit -m "Update profile card" && git push)

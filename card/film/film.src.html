@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: 'JetBrains Mono'; src: url(JetBrainsMono.woff2) format('woff2'); }
+:root { --bg: #0D1117; --win: #161B22; --bar: #1C2128; --border: #30363D; --text: #C9D1D9; --key: #FFA657; --value: #A5D6FF; --dots: #616E7F; --add: #3FB950; --art: #C9D1D9; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1120px; height: 720px; overflow: hidden; background: var(--bg); }
+body { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text); font-variant-ligatures: none; }
+#glow { position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 45%, rgba(56,139,253,.10), transparent 70%); }
+#win { position: absolute; left: 56px; top: 34px; width: 1008px; height: 652px; background: var(--win); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5); transform-origin: 50% 50%; }
+.bar { height: 38px; background: var(--bar); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; padding: 0 14px; }
+.bar i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.bar span { margin-left: auto; margin-right: auto; color: #8B949E; font-size: 13px; transform: translateX(-30px); }
+#term { position: absolute; left: 0; top: 38px; right: 0; bottom: 0; padding: 18px 26px; }
+.row { position: absolute; white-space: pre; height: 20px; line-height: 20px; }
+.p-user { color: var(--add); } .p-dir { color: var(--value); }
+.caret { display: inline-block; width: 8.4px; height: 16px; background: var(--add); vertical-align: -3px; }
+.a { color: var(--art); }
+.text { color: var(--text); } .key { color: var(--key); } .value { color: var(--value); } .dots { color: var(--dots); }
+.hot { text-shadow: 0 0 10px rgba(165,214,255,.9); }
+</style>
+</head>
+<body>
+<div id="glow"></div>
+<div id="win">
+  <div class="bar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span>harris@LHR — zsh</span></div>
+  <div id="term"></div>
+</div>
+<script>
+// The profile card as a short film: `neofetch` is typed, the ASCII art decodes row by row, every line of the card
+// slides out with its dotted leader running to the value, stats count up, and a fresh prompt blinks at the end.
+// Every frame is a pure function of t (window.__seek), so render.mjs can step through it.
+const CARD = __CARD__;
+const CW = 8.4, LH = 20, ART_X = 0, INFO_X = (Math.max(...CARD.art.map(r => r.length)) * CW + 34), TOP = 36;
+const PROMPT = [['p-user', 'harris@LHR'], ['text', ' '], ['p-dir', '~'], ['text', ' % ']];
+const CMD = 'neofetch';
+const GLYPHS = '!<>-_\\/[]{}—=+*^?#@%&01';
+const T_CMD = .7, T_ENTER = T_CMD + CMD.length * .09 + .25, T_ART = T_ENTER + .25, T_INFO = T_ENTER + .5, STEP = .2;
+const T_DONE = T_INFO + CARD.lines.length * STEP + .5;
+window.__duration = Math.ceil(T_DONE + 4);
+
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+const spring = (t, start, d = .6) => { const x = (t - start) / d; if (x <= 0) return 0; return 1 - Math.exp(-5 * x) * Math.cos(8.5 * x); };
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const hash = (a, b) => { let h = (a * 374761393 + b * 668265263) ^ 0x5bd1e995; h = (h ^ (h >>> 13)) * 1274126177; return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+const span = (cls, s) => `<span class="${cls}">${esc(s)}</span>`;
+
+// sound cues for sound.py
+window.__events = () => {
+  const ev = [];
+  for (let i = 0; i < CMD.length; i++) ev.push([T_CMD + i * .09, 'key', 0]);
+  ev.push([T_ENTER, 'click', 0]);
+  CARD.art.forEach((_, i) => { if (i % 3 === 0) ev.push([T_ART + i * .05, 'line', 0]); });
+  CARD.lines.forEach((parts, i) => ev.push([T_INFO + i * STEP, parts[0][1].startsWith('— ') ? 'whoosh' : 'pop', 700 + (i % 6) * 70]));
+  ev.push([T_DONE, 'chime', 0]);
+  return ev;
+};
+
+window.__seek = (t) => {
+  const kW = spring(t, 0, .7);
+  $('win').style.transform = `translateY(${(1 - kW) * 40}px) scale(${.94 + .06 * kW})`;
+  $('win').style.opacity = clamp(kW * 1.5);
+  const rows = [];
+  const blink = Math.floor(t * 2) % 2 === 0;
+
+  // the command line
+  const typed = CMD.slice(0, Math.floor(clamp((t - T_CMD) / .09, 0, CMD.length)));
+  const promptHtml = PROMPT.map(([c, s]) => span(c, s)).join('');
+  rows.push(`<div class="row" style="top:0">${promptHtml}${esc(typed)}${t < T_ENTER && blink ? '<span class="caret"></span>' : ''}</div>`);
+
+  // ASCII art: each row scrambles, then settles left to right
+  CARD.art.forEach((row, i) => {
+    const t0 = T_ART + i * .05; if (t < t0) return;
+    const k = clamp((t - t0) / .45);
+    let s = '';
+    for (let j = 0; j < row.length; j++) {
+      const ch = row[j];
+      if (ch === ' ') { s += ' '; continue; }
+      const settled = j / row.length < k * 1.4 - .3;
+      s += settled ? ch : GLYPHS[Math.floor(hash(i * 97 + j, Math.floor(t * 20)) * GLYPHS.length)];
+    }
+    const artTop = TOP + Math.max(0, (CARD.lines.length * LH - CARD.art.length * 17) / 2);
+    rows.push(`<div class="row a" style="top:${artTop + i * 17}px;left:${ART_X}px;opacity:${.4 + .6 * k}">${esc(s)}</div>`);
+  });
+
+  // the card: each line slides out, its dotted leader runs to the value, numbers count up
+  CARD.lines.forEach((parts, i) => {
+    const t0 = T_INFO + i * STEP; if (t < t0) return;
+    const k = easeOut(clamp((t - t0) / .32));
+    const total = parts.reduce((n, [, s]) => n + s.length, 0);
+    let budget = Math.ceil(total * k), html = '';
+    for (const [cls, s] of parts) {
+      if (budget <= 0) break;
+      let shown = s.slice(0, budget);
+      if (cls === 'value' && /\d/.test(shown) && k < 1) {          // stats count up while they type
+        shown = shown.replace(/\d[\d,]*/g, (m) => { const n = Number(m.replace(/,/g, '')); return isNaN(n) ? m : Math.round(n * k).toLocaleString('en-US'); });
+      }
+      const hot = cls === 'value' && t - t0 > .3 && t - t0 < .7 ? ' hot' : '';
+      html += `<span class="${cls}${hot}">${esc(shown)}</span>`;
+      budget -= s.length;
+    }
+    rows.push(`<div class="row" style="top:${TOP + i * LH}px;left:${INFO_X}px;transform:translateX(${(1 - k) * 18}px);opacity:${clamp(k * 1.6)}">${html}</div>`);
+  });
+
+  // the next prompt
+  if (t >= T_DONE) {
+    const y = TOP + Math.max(CARD.lines.length * LH, CARD.art.length * 17) + 22;
+    rows.push(`<div class="row" style="top:${y}px">${promptHtml}${blink ? '<span class="caret"></span>' : ''}</div>`);
+  }
+  $('term').innerHTML = rows.join('');
+};
+document.fonts.load('14px "JetBrains Mono"').then(() => window.__seek(Number(new URLSearchParams(location.search).get('t') || 9)));
+</script>
+</body>
+</html>
