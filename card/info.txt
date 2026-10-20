@@ -1,0 +1,26 @@
+# Write anything here. The card grows to fit.
+#   Key: value        a row, with dots out to the value (long values wrap)
+#   (empty line)      a spacer
+#   == Title          a new section
+#   {stats}           your live GitHub stats (updated daily by the Action)
+# Lines starting with "# " are comments.
+Harris-py
+OS: macOS, Linux
+Host: 127.0.0.1
+Kernel: AI developer tools, local LLMs
+IDE: Claude Code, Codex, VS Code
+
+Languages.Programming: TypeScript, Python, C++, JavaScript
+Languages.Systems: Vulkan, llama.cpp, Node.js
+Languages.Protocols: MCP, JSON-RPC, Git
+
+Creator.Of: Switchboard, hot-experts, gpio-planner-mcp
+Now.Building: getting Claude Code and Codex to share one memory and one job queue
+
+Hobbies.Software: AI agents, LLM inference, terminals
+Hobbies.Hardware: ESP32, Arduino, soldering
+== Contact
+GitHub: github.com/Harris-py
+Say.Hi: open an issue on any repo
+== GitHub Stats
+{stats}

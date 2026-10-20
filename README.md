@@ -1,4 +1,9 @@
-<p align="center"><img src="profile-crt.gif" width="800" alt="A green-phosphor CRT monitor: a pixel portrait of a green character in white sunglasses, beside a terminal listing Name: Harris, Work: AI developer tools, OS: macOS, Editor: Claude Code, Languages: TypeScript, Python, C++, JavaScript, Skills: AI agents, local LLMs, MCP, ESP32, and a harris@mbp$ prompt."></p>
+<a href="https://github.com/Harris-py">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="card/dark_mode.svg">
+    <img alt="Harris-py: ASCII art of a green character in white sunglasses beside a terminal-style card. AI developer tools and local LLMs; TypeScript, Python, C++; creator of Switchboard, hot-experts and gpio-planner-mcp." src="card/light_mode.svg">
+  </picture>
+</a>
 
 ### A little more about me…
 
@@ -33,3 +38,9 @@ Run Claude Code and Codex as one team: shared context, usage-aware routing, fail
 <a href="https://github.com/Harris-py/agent-switchboard"><img src="https://raw.githubusercontent.com/Harris-py/agent-switchboard/main/docs/media/switchboard-demo.gif" width="640" alt="Claude Code hits its 5-hour limit mid-job and Codex carries on from the checkpoint"></a>
 
 <em><b>I like meeting people who build things.</b> If you're working on AI agents, local LLMs or hardware, open an issue on one of my repos or say hi.</em>
+
+<details>
+<summary>📺 Retro mode</summary>
+<br>
+<img src="profile-crt.gif" width="800" alt="A green-phosphor CRT: a pixel portrait of a green character in white sunglasses beside a terminal that types out Harris's details, clears, and types the next screen.">
+</details>

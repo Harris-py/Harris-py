@@ -11,7 +11,7 @@ const [mode, a, b] = process.argv.slice(2);
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 800, height: 541 } });
 await page.goto('file://' + path.join(here, 'crt.html'));
-await page.evaluate(() => document.fonts.load('22px VT323'));
+await page.evaluate(() => document.fonts.load('24px VT323').then(() => window.__seek(0)));
 const shot = async (t) => { await page.evaluate((t) => window.__seek(t), t); return page.locator('canvas').screenshot({ type: 'png' }); };
 if (mode === 'stills') { mkdirSync(b, { recursive: true }); for (const t of a.split(',').map(Number)) writeFileSync(path.join(b, `t${t}.png`), await shot(t)); }
 else {
