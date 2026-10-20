@@ -3,24 +3,24 @@
 #   (empty line)      a spacer
 #   == Title          a new section
 #   {stats}           your live GitHub stats (updated daily by the Action)
+#   {uptime}          time since BIRTHDAY in gen.py, recomputed daily
 # Lines starting with "# " are comments.
 Harris-py
-OS: macOS, Linux
-Host: 127.0.0.1
+OS: Windows, Arch Linux, macOS
+Uptime: {uptime}
+Host: 127.0.LHR.1
 Kernel: AI developer tools, local LLMs
-IDE: Claude Code, Codex, VS Code
+IDE: Android Studio, VS Code, Neovim, Claude Code, Figma
 
-Languages.Programming: TypeScript, Python, C++, JavaScript
-Languages.Systems: Vulkan, llama.cpp, Node.js
-Languages.Protocols: MCP, JSON-RPC, Git
+Languages.Programming: C/C++, Py, Java, TypeScript, Shell, Bash
+Languages.ML: PyTorch, TensorFlow, TFLite/LiteRT
+Languages.Computer: UML, LaTeX, JSON, YAML, Bash
 
-Creator.Of: Switchboard, hot-experts, gpio-planner-mcp
-Now.Building: getting Claude Code and Codex to share one memory and one job queue
+Creator.Of: Switchboard, hot-experts, GPIO Planner, Lab Report Studio
 
 Hobbies.Software: AI agents, LLM inference, terminals
 Hobbies.Hardware: ESP32, Arduino, soldering
 == Contact
-GitHub: github.com/Harris-py
-Say.Hi: open an issue on any repo
+Email.Personal: m.haris2124@gmail.com
 == GitHub Stats
 {stats}

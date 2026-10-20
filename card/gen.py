@@ -3,6 +3,7 @@
 # which the GitHub Action refreshes daily. Standard library only. Usage: python3 gen.py
 import json
 import pathlib
+import datetime
 import textwrap
 from html import escape
 
@@ -11,6 +12,7 @@ WIDTH = 60                      # characters per info line, so the values line u
 FONT, CW = 14, 8.43             # font size and the width of one monospace character at that size
 ART_LH, INFO_LH = 17, 20        # line heights
 ART_X, TOP, GAP = 22, 34, 34
+BIRTHDAY = '2006'               # a year, or 'YYYY-MM-DD' for years, months and days like the original
 
 THEMES = {
     'dark': dict(bg='#161B22', border='#30363D', text='#C9D1D9', key='#FFA657', value='#A5D6FF', dots='#616E7F', art='#C9D1D9', add='#3FB950'),
@@ -30,6 +32,19 @@ def kv(key, value):
     for chunk in rest:   # continuation lines stay right-aligned under the value
         out.append([('dots', '. ' + ' ' * (WIDTH - 2 - len(chunk))), ('value', chunk)])
     return out
+
+
+def uptime(today=None):
+    """'20 years, 3 months, 5 days' from a full BIRTHDAY; 'since 2006' when only the year is known."""
+    if len(BIRTHDAY) == 4:
+        return f'since {BIRTHDAY}'
+    b, t = datetime.date.fromisoformat(BIRTHDAY), today or datetime.date.today()
+    months = (t.year - b.year) * 12 + t.month - b.month - (t.day < b.day)
+    last = (b.replace(year=b.year + (b.month - 1 + months) // 12, month=(b.month - 1 + months) % 12 + 1, day=1)
+            + datetime.timedelta(days=b.day - 1))
+    days = (t - last).days
+    plural = lambda n, w: f"{n} {w}{'' if n == 1 else 's'}"
+    return f"{plural(months // 12, 'year')}, {plural(months % 12, 'month')}, {plural(days, 'day')}"
 
 
 def lines(stats):
@@ -52,7 +67,7 @@ def lines(stats):
             out += kv('Pull.Requests', f"{stats['prs']} in the last year")
         elif ':' in line:
             k, v = line.split(':', 1)
-            out += kv(k.strip(), v.strip())
+            out += kv(k.strip(), v.strip().replace('{uptime}', uptime()))
         else:
             out.append([('text', '. ' + line.strip())])
     return out

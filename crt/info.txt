@@ -1,19 +1,12 @@
 Name: Harris
-Work: AI developer tools
-OS: macOS
-Editor: Claude Code
-Languages: TypeScript, Python, C++, JavaScript
-Skills: AI agents, local LLMs, MCP, ESP32
-
-Now: making Claude Code and Codex work as one team
+OS: Windows, Arch Linux, macOS
+Host: 127.0.LHR.1
+Editor: VS Code, Neovim, Claude Code
+Languages: C/C++, Py, Java, TypeScript, Shell, Bash
+ML: PyTorch, TensorFlow, TFLite/LiteRT
 ---
-Projects:
-  agent-switchboard  Claude Code + Codex as one team: shared context, failover, one dashboard
-  hot-experts  30B mixture-of-experts LLMs on a 2019 Intel MacBook
-  gpio-planner-mcp  ESP32 + Arduino wiring over MCP
+Creator of: Switchboard, hot-experts, GPIO Planner, Lab Report Studio
+Computer: UML, LaTeX, JSON, YAML, Bash
+Hobbies: AI agents, LLM inference, terminals, ESP32, Arduino, soldering
 
-Hobbies: LLM inference, soldering, terminals
-Ask me about: agents, MCP, running big models on small hardware
----
-GitHub: github.com/Harris-py
-Say hi: open an issue on any repo
+Email: m.haris2124@gmail.com
